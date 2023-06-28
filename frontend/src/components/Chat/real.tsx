@@ -11,7 +11,7 @@ export const RealTimeChat = () => {
   const messagesRef = useRef<HTMLTextAreaElement>(null);
   const [submiting, setSubmiting] = useState(false);
   const [messages, setMessages] = useState([
-    <MessageComponent msg={"hello world"} />,
+    <MessageComponent msg={"hello world"} key={Math.random() * 1000} />,
   ]);
 
   useEffect(() => {
@@ -22,7 +22,10 @@ export const RealTimeChat = () => {
         console.log("connected");
       });
       socket.on("chat message", function (msg: string) {
-        setMessages((old) => [...old, <MessageComponent msg={msg} />]);
+        setMessages((old) => [
+          ...old,
+          <MessageComponent msg={msg} key={Math.random() * 1000} />,
+        ]);
         window.scrollTo(0, document.body.scrollHeight);
       });
     };
@@ -50,7 +53,7 @@ export const RealTimeChat = () => {
       <h2>Chat</h2>
       <article id="messages" className={styles.fonts} ref={messagesRef}>
         Mensagens aqui
-        {messages.map((message) => message)}
+        {messages.map((message, index) => message)}
       </article>
 
       <form onSubmit={handleSubmit} className={styles.square}>
