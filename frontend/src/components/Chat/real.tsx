@@ -3,28 +3,16 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 let socket;
 import styles from "./index.module.scss";
-import Image from "next/image";
 
-const Message = ({ msg }: { msg: string }) => {
-  return (
-    <div className={styles.message}>
-      <Image
-        height={30}
-        width={30}
-        src={`https://source.unsplash.com/featured/300x201`}
-        alt="user"
-        className={styles.image}
-      />
-      {msg}
-    </div>
-  );
-};
+import { MessageComponent } from "../Message";
+
 export const RealTimeChat = () => {
   const [input, setInput] = useState("");
-  const [textArea, setTextArea] = useState("");
   const messagesRef = useRef<HTMLTextAreaElement>(null);
   const [submiting, setSubmiting] = useState(false);
-  const [messages, setMessages] = useState([<Message msg={"hello world"} />]);
+  const [messages, setMessages] = useState([
+    <MessageComponent msg={"hello world"} />,
+  ]);
 
   useEffect(() => {
     const socketInitializer = async () => {
@@ -34,7 +22,7 @@ export const RealTimeChat = () => {
         console.log("connected");
       });
       socket.on("chat message", function (msg: string) {
-        setMessages((old) => [...old, <Message msg={msg} />]);
+        setMessages((old) => [...old, <MessageComponent msg={msg} />]);
         window.scrollTo(0, document.body.scrollHeight);
       });
     };
