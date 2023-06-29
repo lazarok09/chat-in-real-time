@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { FormEvent, Suspense, useEffect, useRef, useState } from "react";
 import io from "socket.io-client";
 let socket;
 import styles from "./index.module.scss";
@@ -8,11 +8,8 @@ import { MessageComponent } from "../Message";
 
 export const RealTimeChat = () => {
   const [input, setInput] = useState("");
-  const messagesRef = useRef<HTMLTextAreaElement>(null);
   const [submiting, setSubmiting] = useState(false);
-  const [messages, setMessages] = useState([
-    <MessageComponent msg={"hello world"} key={Math.random() * 1000} />,
-  ]);
+  const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     const socketInitializer = async () => {
@@ -21,10 +18,10 @@ export const RealTimeChat = () => {
       socket.on("connect", () => {
         console.log("connected");
       });
-      socket.on("chat message", function (msg: string) {
+      socket.on("chat message", function (data: IOMessage) {
         setMessages((old) => [
           ...old,
-          <MessageComponent msg={msg} key={Math.random() * 1000} />,
+          <MessageComponent {...data} key={data.userName} />,
         ]);
         window.scrollTo(0, document.body.scrollHeight);
       });
@@ -38,33 +35,45 @@ export const RealTimeChat = () => {
   };
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
+
     setSubmiting(true);
+
     if (!!input?.length) {
       console.info(`Emited chat message  with value ${input}`);
+
+      setInput("");
+
+      const message: IOMessage = {
+        message: input,
+        userName: "lazarok09",
+      };
+
       setSubmiting(false);
-      return socket.emit("chat message", input);
+      return socket.emit("chat message", message);
     }
+
     setSubmiting(false);
     console.error("no data in input value");
   };
 
   return (
-    <section>
-      <h2>Chat</h2>
-      <article id="messages" className={styles.fonts} ref={messagesRef}>
-        Mensagens aqui
-        {messages.map((message, index) => message)}
-      </article>
+    <section className={styles.section}>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <article>
+          Mensagens aqui
+          {messages.map((message) => message)}
+        </article>
+      </Suspense>
 
       <form onSubmit={handleSubmit} className={styles.square}>
-        <fieldset className={styles.fonts}>
+        <fieldset className={`${styles.fieldset}`}>
           <input
-            placeholder="Type something"
+            placeholder="Envie sua mensagem"
             value={input}
-            className={styles.fonts}
+            className={`${styles.fieldset__input}`}
             onChange={onChangeHandler}
           />
-          <button className={styles.fonts} disabled={submiting}>
+          <button className={styles.button} disabled={submiting}>
             {submiting ? "Enviando" : "Enviar"}
           </button>
         </fieldset>

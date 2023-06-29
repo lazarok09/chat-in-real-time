@@ -4,6 +4,17 @@
   align-items: center;
   gap: 12px;
   margin: 16px;
+  
+  &__title {
+    font-weight: bold;
+    color: #a2a2a2;
+    font-size: 1.4rem;
+  }
+  &__text {
+    font-size: "Roboto";
+    font-weight: 300;
+    font-size: 1.2rem;
+  }
 }
 
 .image {
