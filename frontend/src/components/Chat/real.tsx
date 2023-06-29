@@ -1,14 +1,15 @@
 "use client";
-import {
+import React, {
+  ChangeEvent,
   FormEvent,
   Suspense,
   useContext,
   useEffect,
-  useRef,
   useState,
 } from "react";
-import io from "socket.io-client";
-let socket;
+
+import io, { Socket } from "socket.io-client";
+let socket: Socket;
 import styles from "./index.module.scss";
 
 import { MessageComponent } from "../Message";
@@ -17,7 +18,7 @@ import { UserContext } from "@/context/User/context";
 export const RealTimeChat = () => {
   const [input, setInput] = useState("");
   const [submiting, setSubmiting] = useState(false);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<JSX.Element[]>([]);
   const { user } = useContext(UserContext);
   useEffect(() => {
     const socketInitializer = async () => {
@@ -38,7 +39,7 @@ export const RealTimeChat = () => {
     socketInitializer();
   }, []);
 
-  const onChangeHandler = (e) => {
+  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
   const handleSubmit = (e: FormEvent) => {

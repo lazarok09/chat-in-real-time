@@ -9,10 +9,10 @@ export interface User {
   name: string;
 }
 export const USER_DEFAULT_STATE = {
-  name: null,
+  name: "",
 };
 export const UserProvider = ({ children }: UserProviderProps) => {
-  const [user, setUser] = useState<User>(USER_DEFAULT_STATE.name);
+  const [user, setUser] = useState<User>({ name: USER_DEFAULT_STATE.name });
 
   return (
     <UserContext.Provider value={{ user, setUser }}>

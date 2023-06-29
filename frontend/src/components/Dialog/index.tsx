@@ -9,6 +9,8 @@ export const DialogComponent = () => {
   const { setUser } = useContext(UserContext);
 
   const handleCloseDialog = () => {
+    if (!dialogRef?.current) return alert("Error when closing dialog");
+
     dialogRef.current.close();
   };
 
