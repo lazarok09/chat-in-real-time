@@ -1,16 +1,24 @@
 "use client";
-import { FormEvent, Suspense, useEffect, useRef, useState } from "react";
+import {
+  FormEvent,
+  Suspense,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import io from "socket.io-client";
 let socket;
 import styles from "./index.module.scss";
 
 import { MessageComponent } from "../Message";
+import { UserContext } from "@/context/User/context";
 
 export const RealTimeChat = () => {
   const [input, setInput] = useState("");
   const [submiting, setSubmiting] = useState(false);
   const [messages, setMessages] = useState([]);
-
+  const { user } = useContext(UserContext);
   useEffect(() => {
     const socketInitializer = async () => {
       socket = io("http://localhost:3001");
@@ -45,7 +53,7 @@ export const RealTimeChat = () => {
 
       const message: IOMessage = {
         message: input,
-        userName: "lazarok09",
+        userName: user.name,
       };
 
       setSubmiting(false);
