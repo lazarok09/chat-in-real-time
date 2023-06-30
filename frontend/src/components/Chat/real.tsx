@@ -69,7 +69,7 @@ export const RealTimeChat = () => {
   return (
     <section className={styles.section}>
       <article>
-        Mensagens aqui
+        <h1 className={styles.welcome}>Welcome to real time chat </h1>
         {messages.map((message) => message)}
       </article>
 

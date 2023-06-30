@@ -13,7 +13,7 @@ export const MessageComponent = ({ message, userName }: IOMessage) => {
         alt="user"
         className={styles.image}
       />
-      <span className={styles.message__title}>{userName}</span>
+      {userName && <span className={styles.message__title}>{userName}</span>}
       <p className={styles.message__text}>{message}</p>
     </article>
   );

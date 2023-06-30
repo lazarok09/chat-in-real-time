@@ -1,10 +1,8 @@
-import { DialogComponent } from "../Dialog";
-
+import styles from './index.module.scss'
 import { RealTimeChat } from "./real";
 export const Chat = () => {
   return (
-    <main>
-      <DialogComponent />
+    <main className={styles.main}>
       <RealTimeChat />
     </main>
   );
