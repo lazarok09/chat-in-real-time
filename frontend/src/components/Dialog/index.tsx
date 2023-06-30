@@ -3,6 +3,10 @@ import { UserContext } from "@/context/User/context";
 import { FormEvent, useContext, useRef } from "react";
 import styles from "./index.module.scss";
 import styles2 from "../Chat/index.module.scss";
+import { Input } from "../Input";
+import { Button } from "../Button";
+import { Fieldset } from "../Fieldset";
+import { Label } from "../Label";
 
 export const DialogComponent = () => {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -25,34 +29,33 @@ export const DialogComponent = () => {
   };
 
   return (
-    <dialog className={styles.dialog} open id="user-dialog" ref={dialogRef}>
+    <dialog className={styles.dialog} open id="user-dialog" ref={null}>
       <section className={styles.dialog__body}>
         <div className={styles.dialog__close}>
-          <button onClick={handleCloseDialog} aria-label="fechar modal">
+          <button
+            className={styles.dialog__close__button}
+            onClick={handleCloseDialog}
+            aria-label="fechar modal"
+          >
             X
           </button>
         </div>
 
-        <h1>Bem vindo ao app de chat real</h1>
+        <h1>Do you want a name ?</h1>
 
         <form onSubmit={handleSubmit}>
           <div>
-            <label className={styles2.fieldset__label} htmlFor="username">
-              Insira seu nome
-            </label>
+            <Label htmlFor="username">Name</Label>
           </div>
-          <fieldset className={styles2.fieldset}>
-            <input
-              className={styles2.fieldset__input}
-              placeholder="username"
+          <Fieldset>
+            <Input
+              placeholder="Bryan"
               name="userName"
               type="text"
               id="username"
             />
-            <button className={styles2.button} type="submit">
-              Enviar
-            </button>
-          </fieldset>
+            <Button type="submit">Enviar</Button>
+          </Fieldset>
         </form>
       </section>
     </dialog>

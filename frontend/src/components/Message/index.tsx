@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./Message.module.scss";
+import styles from "./index.module.scss";
 
 const Icon = "/user.png";
 

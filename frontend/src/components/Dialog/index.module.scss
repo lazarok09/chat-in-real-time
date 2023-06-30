@@ -1,23 +1,40 @@
 .dialog {
-  border-radius: calc(5px * var(--ratio));
   box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   padding: 1.6rem;
-  width: 50%;
-  height: 50%;
-  margin: 0 auto;
-}
-.dialog__close {
-  display: flex;
   width: 100%;
-  justify-content: flex-end;
-  & button {
-    font-size: 1rem;
-    padding: 4px 8px;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid rgba(0, 0, 55, 1);
+  background:  rgba(55, 55, 55, 0.75);
+  &__close {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    &__button {
+      font-size: 1rem;
+      padding: 4.5px 12px;
+      cursor: pointer;
+      background: #342E37;
+      color: white;
+      border: none;
+      border-radius: 2px;
+    }
   }
 }
 
 .dialog__body {
+  background: black;
+  display: flex;
+  justify-content: center;
+  width: 50%;
+  height: 50%;
   padding: 0 16px;
+  border: 2px solid rgba(0, 0, 55, 1);
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
   gap: 16px;
