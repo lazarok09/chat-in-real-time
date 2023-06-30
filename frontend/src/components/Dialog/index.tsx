@@ -21,6 +21,7 @@ export const DialogComponent = () => {
     setUser({
       name: name as string,
     });
+    dialogRef.current?.close();
   };
 
   return (
