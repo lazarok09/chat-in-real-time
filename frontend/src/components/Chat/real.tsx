@@ -58,6 +58,7 @@ export const RealTimeChat = () => {
       };
 
       setSubmiting(false);
+
       return socket.emit("chat message", message);
     }
 
@@ -67,12 +68,10 @@ export const RealTimeChat = () => {
 
   return (
     <section className={styles.section}>
-      <Suspense fallback={<h2>Loading...</h2>}>
-        <article>
-          Mensagens aqui
-          {messages.map((message) => message)}
-        </article>
-      </Suspense>
+      <article>
+        Mensagens aqui
+        {messages.map((message) => message)}
+      </article>
 
       <form onSubmit={handleSubmit} className={styles.square}>
         <fieldset className={`${styles.fieldset}`}>
