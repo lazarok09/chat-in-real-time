@@ -46,4 +46,8 @@ docker compose up
 
 <hr />
 <br/>
+
+🔸 [Colors](https://coolors.co/3c91e6-342e37-a2d729-fafffd-fa824c)
+
+
 <div align="center"> Made with love by < lazarok09 /> ❤️ </div>
