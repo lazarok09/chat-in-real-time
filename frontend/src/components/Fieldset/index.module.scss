@@ -1,6 +1,8 @@
 .fieldset {
-  height: 50px;
+  height: 45px;
   display: flex;
   flex: 1;
   justify-content: space-between;
+  border: none;
+  gap: 6px;
 }

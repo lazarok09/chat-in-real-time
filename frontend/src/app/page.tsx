@@ -5,7 +5,6 @@ import { UserProvider } from "@/context/User";
 export default function Home() {
   return (
     <UserProvider>
-      <DialogComponent />
       <Chat />
     </UserProvider>
   );

@@ -1,8 +1,9 @@
 "use client";
+
 import { UserContext } from "@/context/User/context";
 import { FormEvent, useContext, useRef } from "react";
 import styles from "./index.module.scss";
-import styles2 from "../Chat/index.module.scss";
+
 import { Input } from "../Input";
 import { Button } from "../Button";
 import { Fieldset } from "../Fieldset";
@@ -13,8 +14,10 @@ export const DialogComponent = () => {
   const { setUser } = useContext(UserContext);
 
   const handleCloseDialog = () => {
-    if (!dialogRef?.current) return alert("Error when closing dialog");
-
+    if (!dialogRef?.current) {
+      alert("Error when closing dialog");
+      return;
+    }
     dialogRef.current.close();
   };
 
@@ -29,16 +32,17 @@ export const DialogComponent = () => {
   };
 
   return (
-    <dialog className={styles.dialog} open id="user-dialog" ref={null}>
+    <dialog className={styles.dialog} open id="user-dialog" ref={dialogRef}>
       <section className={styles.dialog__body}>
         <div className={styles.dialog__close}>
-          <button
+          <Button
             className={styles.dialog__close__button}
             onClick={handleCloseDialog}
             aria-label="fechar modal"
+            type="button"
           >
             X
-          </button>
+          </Button>
         </div>
 
         <h1>Do you want a name ?</h1>
@@ -54,7 +58,7 @@ export const DialogComponent = () => {
               type="text"
               id="username"
             />
-            <Button type="submit">Enviar</Button>
+            <Button  className={styles.button__red} type="submit">Send</Button>
           </Fieldset>
         </form>
       </section>

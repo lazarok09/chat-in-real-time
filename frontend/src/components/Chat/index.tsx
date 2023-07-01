@@ -16,6 +16,7 @@ import { UserContext } from "@/context/User/context";
 import { Button } from "../Button";
 import { Input } from "../Input";
 import { Fieldset } from "../Fieldset";
+import { DialogComponent } from "../Dialog";
 
 export const Chat = () => {
   const [input, setInput] = useState("");
@@ -70,22 +71,22 @@ export const Chat = () => {
 
   return (
     <main className={styles.main}>
+      <DialogComponent />
+
       <section className={styles.section}>
-        <article>
-          <h1 className={styles.welcome}>Welcome to real time chat </h1>
+        <h1 className={styles.welcome}>Welcome to real time chat </h1>
+        <article className={styles.messages}>
           {messages.map((message) => message)}
         </article>
 
         <form onSubmit={handleSubmit} className={styles.square}>
           <Fieldset>
             <Input
-              placeholder="Envie sua mensagem"
+              placeholder="Type anything here!"
               value={input}
               onChange={onChangeHandler}
             />
-            <Button disabled={submiting}>
-              {submiting ? "Enviando" : "Enviar"}
-            </Button>
+            <Button disabled={submiting}>Chat</Button>
           </Fieldset>
         </form>
       </section>

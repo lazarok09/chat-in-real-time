@@ -9,11 +9,21 @@
   font-size: 20px;
   border: 1px solid #c2c2c2;
   width: 50%;
-  min-height: 80vh;
-
+  height: 80vh;
+  max-width: 480px;
+  padding: 6px;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+}
+.messages {
+  border: 1px solid #c2c2c2;
+  margin-bottom: 10px;
+  flex: 1;
+  flex-wrap: wrap;
+  word-break: break-all;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .welcome {
   display: flex;

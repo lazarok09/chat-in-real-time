@@ -2,7 +2,9 @@
   display: flex;
   position: relative;
   align-items: center;
-  
+  word-wrap: break-word;
+  flex-wrap: wrap;
+
   margin: 16px;
   
   &__title {
