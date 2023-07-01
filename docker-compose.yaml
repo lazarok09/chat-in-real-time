@@ -6,9 +6,8 @@ services:
       - "3000:3000"
     volumes: 
       - ./frontend:/app
-      - /frontend/node_modules
-      - /frontend/.next
-      - /frontend/dist
+      - /app/node_modules
+      - /app/.next
     environment:
       - CHOKIDAR_USERPOLLING=true
   backend:
@@ -17,4 +16,4 @@ services:
       - "3001:3001"
     volumes: 
       - ./backend:/app
-      - /backend/node_modules
+      - /app/node_modules
