@@ -43,6 +43,10 @@ The dev enviroment is in docker composed file, containing volume mappings with a
 ```
 docker compose up
 ```
+If you facy any issues related to the image try to use before the **up** command
+```
+docker-compose build --no-cache
+```
 
 <hr />
 <br/>
